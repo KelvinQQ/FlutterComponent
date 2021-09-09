@@ -1,0 +1,16 @@
+{
+	"folders": [
+		{
+			"path": "BusinessLib"
+		},
+		{
+			"path": "BusinessModule"
+		},
+		{
+			"path": "CommonLib"
+		},
+		{
+			"path": "HostApp"
+		}
+	]
+}
