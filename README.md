@@ -73,8 +73,11 @@ dependencies:
 ![image](./images/目录结构.png)
 
 `HostApp` ：壳工程目录
+
 `BusinessModule` ：业务模块目录
+
 `BusinessLib`：业务能力目录，里面还有个二级的`UI`目录，存放一些和业务相关的公共`UI`组件
+
 `CommonLib`	：基础能力目录
 	
 按照上面的思路，我们首先需要一个壳工程，我们使用`VSCode`新建一个`App`工程，这里放在`HostApp`目录下。
