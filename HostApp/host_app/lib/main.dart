@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:module_home/home_page.dart';
+import 'package:module_home/name_router.dart';
+import 'package:module_user/name_router.dart';
 import 'package:module_setting/setting_page.dart';
 import 'package:module_user/user_page.dart';
 
@@ -11,12 +13,14 @@ class App extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Map<String, WidgetBuilder> routes = {
+      "setting": (ctx) => SettingPage(),
+    };
+    routes..addAll(HomeNamedRouter.routers)..addAll(UserNamedRouter.routers);
     return MaterialApp(
-      routes: {
-        "setting": (ctx) => SettingPage(),
-      },
+      routes: routes,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.red,
       ),
       home: HomeTabPage(),
     );
