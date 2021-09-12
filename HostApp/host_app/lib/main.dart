@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:module_home/home_page.dart';
 import 'package:module_home/name_router.dart';
+import 'package:module_task/name_router.dart';
 import 'package:module_user/name_router.dart';
 import 'package:module_setting/setting_page.dart';
 import 'package:module_user/user_page.dart';
@@ -16,7 +17,10 @@ class App extends StatelessWidget {
     Map<String, WidgetBuilder> routes = {
       "setting": (ctx) => SettingPage(),
     };
-    routes..addAll(HomeNamedRouter.routers)..addAll(UserNamedRouter.routers);
+    routes
+      ..addAll(HomeNamedRouter.routers)
+      ..addAll(UserNamedRouter.routers)
+      ..addAll(TaksNamedRouter.routers);
     return MaterialApp(
       routes: routes,
       theme: ThemeData(
@@ -79,7 +83,9 @@ class _HomeTabPageState extends State<HomeTabPage> {
         controller: _pageController,
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, "task");
+        },
         child: Icon(Icons.add),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
