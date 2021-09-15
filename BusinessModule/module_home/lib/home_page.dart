@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:lib_log/lib_log.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -12,7 +13,17 @@ class HomePage extends StatelessWidget {
             child: InkWell(
               child: Icon(Icons.backpack),
               onTap: () {
+                Logging.v("Home", "Hello Log");
                 Navigator.pushNamed(context, "news");
+              },
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(right: 10),
+            child: InkWell(
+              child: Icon(Icons.help),
+              onTap: () {
+                Navigator.pushNamed(context, "helpp");
               },
             ),
           ),

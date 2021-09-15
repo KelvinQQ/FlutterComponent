@@ -1,4 +1,8 @@
+import 'package:fluro/fluro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:host_app/undefined_page.dart';
 import 'package:module_home/home_page.dart';
 import 'package:module_home/name_router.dart';
 import 'package:module_task/name_router.dart';
@@ -7,7 +11,10 @@ import 'package:module_setting/setting_page.dart';
 import 'package:module_user/user_page.dart';
 
 void main() {
-  runApp(App());
+  // 强制竖屏
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((value) => runApp(App()));
 }
 
 class App extends StatelessWidget {
@@ -23,7 +30,17 @@ class App extends StatelessWidget {
       ..addAll(TaksNamedRouter.routers);
     return MaterialApp(
       routes: routes,
+      onUnknownRoute: (settings) {
+        return CupertinoPageRoute(builder: (ctx) {
+          return UndefinedPage();
+        });
+      },
+      onGenerateRoute: HomeNamedRouter.generateRoute,
       theme: ThemeData(
+        pageTransitionsTheme: PageTransitionsTheme(builders: {
+          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+        }),
         primarySwatch: Colors.red,
       ),
       home: HomeTabPage(),
@@ -32,6 +49,8 @@ class App extends StatelessWidget {
 }
 
 class HomeTabPage extends StatefulWidget {
+  static FluroRouter router = new FluroRouter();
+
   @override
   _HomeTabPageState createState() => _HomeTabPageState();
 }

@@ -28,6 +28,7 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  fluro: any
   module_home:
     path: ../../BusinessModule/module_home
   module_user:
@@ -36,6 +37,8 @@ dependencies:
     path: ../../BusinessModule/module_setting
   module_task:
     path: ../../BusinessModule/module_task
+  lib_log:
+    path: ../../CommonLib/lib_log
 
 dev_dependencies:
   flutter_test:
