@@ -12,5 +12,83 @@
 		{
 			"path": "HostApp"
 		}
-	]
+	],
+	"launch": {
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "testDebug",
+				"request": "launch",
+				"type": "dart",
+				"cwd": "${workspaceFolder:HostApp}/host_app",
+				"flutterMode": "debug",
+				"args": [
+					"--dart-define",
+					"ENV=test",
+				]
+			},
+			{
+				"name": "grayDebug",
+				"request": "launch",
+				"type": "dart",
+				"cwd": "${workspaceFolder:HostApp}/host_app",
+				"flutterMode": "debug",
+				"args": [
+					"--dart-define",
+					"ENV=gray",
+				]
+			},
+			{
+				"name": "produceDebug",
+				"request": "launch",
+				"type": "dart",
+				"cwd": "${workspaceFolder:HostApp}/host_app",
+				"flutterMode": "debug",
+				"args": [
+					"--dart-define",
+					"ENV=produce",
+				]
+			},
+			{
+				"name": "testRelease",
+				"request": "launch",
+				"type": "dart",
+				"cwd": "${workspaceFolder:HostApp}/host_app",
+				"flutterMode": "release",
+				"args": [
+					"--dart-define",
+					"ENV=test",
+				]
+			},
+			{
+				"name": "grayRelease",
+				"request": "launch",
+				"type": "dart",
+				"cwd": "${workspaceFolder:HostApp}/host_app",
+				"flutterMode": "release",
+				"args": [
+					"--dart-define",
+					"ENV=gray",
+				]
+			},
+			{
+				"name": "produceRelease",
+				"request": "launch",
+				"type": "dart",
+				"cwd": "${workspaceFolder:HostApp}/host_app",
+				"flutterMode": "release",
+				"args": [
+					"--dart-define",
+					"ENV=produce",
+				]
+			},
+			// {
+			// 	"name": "homeDebug",
+			// 	"request": "launch",
+			// 	"type": "dart",
+			// 	"cwd": "${workspaceFolder:BusinessModule}/module_home",
+			// 	"flutterMode": "debug"
+			// }
+		]
+	}
 }

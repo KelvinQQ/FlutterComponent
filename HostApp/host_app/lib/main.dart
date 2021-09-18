@@ -1,24 +1,30 @@
-import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:host_app/undefined_page.dart';
+import 'package:lib_log/lib_log.dart';
 import 'package:module_home/home_page.dart';
 import 'package:module_home/name_router.dart';
+import 'package:module_setting/theme_provider.dart';
 import 'package:module_task/name_router.dart';
 import 'package:module_user/name_router.dart';
 import 'package:module_setting/setting_page.dart';
 import 'package:module_user/user_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   // 强制竖屏
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
-      .then((value) => runApp(App()));
+      .then((value) => runApp(MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (ctx) => ThemeProvider())
+            ],
+            child: App(),
+          )));
 }
 
 class App extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     Map<String, WidgetBuilder> routes = {
@@ -28,34 +34,41 @@ class App extends StatelessWidget {
       ..addAll(HomeNamedRouter.routers)
       ..addAll(UserNamedRouter.routers)
       ..addAll(TaksNamedRouter.routers);
-    return MaterialApp(
-      routes: routes,
-      onUnknownRoute: (settings) {
-        return CupertinoPageRoute(builder: (ctx) {
-          return UndefinedPage();
-        });
+    return Consumer<ThemeProvider>(
+      builder: (ctx, theme, _) {
+        Logging.d('APP', theme.themeColor);
+        return MaterialApp(
+          routes: routes,
+          onUnknownRoute: (settings) {
+            return CupertinoPageRoute(builder: (ctx) {
+              return UndefinedPage();
+            });
+          },
+          onGenerateRoute: HomeNamedRouter.generateRoute,
+          theme: ThemeData(
+            //  (ThemeColors.themeColorMap[theme.themeColor])!
+            primarySwatch: (ThemeColors.themeColorMap[theme.themeColor])!,
+            // primaryColor: ThemeColors.themeColorMap[theme.themeColor],
+            pageTransitionsTheme: PageTransitionsTheme(builders: {
+              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+              TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            }),
+          ),
+          home: HomeTabPage(),
+        );
       },
-      onGenerateRoute: HomeNamedRouter.generateRoute,
-      theme: ThemeData(
-        pageTransitionsTheme: PageTransitionsTheme(builders: {
-          TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-        }),
-        primarySwatch: Colors.red,
-      ),
-      home: HomeTabPage(),
     );
   }
 }
 
 class HomeTabPage extends StatefulWidget {
-  static FluroRouter router = new FluroRouter();
-
   @override
   _HomeTabPageState createState() => _HomeTabPageState();
 }
 
 class _HomeTabPageState extends State<HomeTabPage> {
+  static const TAG = "App";
+
   int _currentIndex = 0;
   late PageController _pageController;
 
@@ -76,6 +89,8 @@ class _HomeTabPageState extends State<HomeTabPage> {
   ];
 
   void _onPageChanged(int value) {
+    const String inProduction = const String.fromEnvironment("ENV");
+    Logging.d(TAG, inProduction);
     if (value >= 2) {
       value = value + 1;
     }

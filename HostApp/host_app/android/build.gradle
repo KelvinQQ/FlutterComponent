@@ -1,7 +1,9 @@
 buildscript {
     ext.kotlin_version = '1.3.50'
     repositories {
-        maven { url "https://artifacts.iflytek.com/artifactory/mvn-repo/" }
+        maven{ url 'https://artifacts.iflytek.com/artifactory/ebg-mvn-release-private/'}
+        maven{ url 'https://artifacts.iflytek.com/artifactory/ebg-mvn-snapshot-private/'}
+        maven { url "https://artifacts.iflytek.com/artifactory/mvn-repo/"}
         google()
         jcenter()
     }
@@ -14,7 +16,9 @@ buildscript {
 
 allprojects {
     repositories {
-        maven { url "https://artifacts.iflytek.com/artifactory/mvn-repo/" }
+        maven{ url 'https://artifacts.iflytek.com/artifactory/ebg-mvn-release-private/'}
+        maven{ url 'https://artifacts.iflytek.com/artifactory/ebg-mvn-snapshot-private/'}
+        maven { url "https://artifacts.iflytek.com/artifactory/mvn-repo/"}
         google()
         jcenter()
     }

@@ -4,7 +4,7 @@ import 'dart:math';
 
 ///
 class Logging {
-  static LogLevel _level = LogLevel.INFO;
+  static LogLevel _level = LogLevel.VERBOSE;
 
   static init(LogLevel level) {
     _level = level;
