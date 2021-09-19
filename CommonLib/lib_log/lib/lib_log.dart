@@ -39,15 +39,15 @@ class Logging {
     if (msg.level.index < _level.index) {
       return;
     }
-    int MAX_MESSAGE_LENGTH = 800;
+    int maxMessageLength = 800;
     String message = msg.toString();
-    if (message.length < MAX_MESSAGE_LENGTH) {
+    if (message.length < maxMessageLength) {
       print(message);
     } else {
       var tmp = message;
       do {
-        print(tmp.substring(0, min(MAX_MESSAGE_LENGTH, tmp.length)));
-        tmp = tmp.substring(min(MAX_MESSAGE_LENGTH, tmp.length));
+        print(tmp.substring(0, min(maxMessageLength, tmp.length)));
+        tmp = tmp.substring(min(maxMessageLength, tmp.length));
       } while (tmp.length > 0);
     }
   }

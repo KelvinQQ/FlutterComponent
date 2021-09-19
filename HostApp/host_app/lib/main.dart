@@ -1,3 +1,4 @@
+import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -5,16 +6,17 @@ import 'package:host_app/undefined_page.dart';
 import 'package:lib_log/lib_log.dart';
 import 'package:module_home/home_page.dart';
 import 'package:module_home/name_router.dart';
-import 'package:module_setting/theme_provider.dart';
+import 'package:lib_theme/theme_provider.dart';
 import 'package:module_task/name_router.dart';
 import 'package:module_user/name_router.dart';
 import 'package:module_setting/setting_page.dart';
 import 'package:module_user/user_page.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   // 强制竖屏
   WidgetsFlutterBinding.ensureInitialized();
+  await SpUtil.getInstance();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((value) => runApp(MultiProvider(
             providers: [
@@ -36,7 +38,7 @@ class App extends StatelessWidget {
       ..addAll(TaksNamedRouter.routers);
     return Consumer<ThemeProvider>(
       builder: (ctx, theme, _) {
-        Logging.d('APP', theme.themeColor);
+        Logging.d("APP", theme.themeColor);
         return MaterialApp(
           routes: routes,
           onUnknownRoute: (settings) {

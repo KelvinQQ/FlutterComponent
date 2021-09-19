@@ -40,6 +40,8 @@ dependencies:
     path: ../../BusinessModule/module_task
   lib_log:
     path: ../../CommonLib/lib_log
+  lib_theme:
+    path: ../../BusinessLib/UI/lib_theme
 
 dev_dependencies:
   flutter_test:

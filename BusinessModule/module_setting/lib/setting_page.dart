@@ -1,7 +1,7 @@
 import 'package:flustars/flustars.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:module_setting/theme_provider.dart';
+import 'package:lib_theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class SettingPage extends StatefulWidget {
@@ -50,7 +50,6 @@ class _SettingPageState extends State<SettingPage> {
                           setState(() {
                             _colorKey = key;
                           });
-                          SpUtil.putString('key_theme_color', key);
                           Provider.of<ThemeProvider>(context, listen: false)
                               .setTheme(key);
                         },
